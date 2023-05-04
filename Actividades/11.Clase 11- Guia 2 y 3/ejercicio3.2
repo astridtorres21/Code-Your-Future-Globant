@@ -1,0 +1,65 @@
+Algoritmo ejercicio3
+	
+	Definir usuario, contrasena, eleccion como Cadena;
+	Definir Login como logico;
+	Definir botellas, intentos, respuesta, i Como Entero;
+	Definir gramos, total, saldo Como Real;
+	Login = falso;
+	intentos = 0;
+	gramos = 0;
+	total = 0;
+	saldo = 0;
+	
+	Escribir "Ingrese nombre de usuario";
+	Leer usuario;
+	Si usuario == "Albus_D" Entonces
+		Mientras intentos < 3 Y Login == falso Hacer
+			Escribir "Ingrese contraseña";
+			Leer contrasena;
+			intentos = intentos + 1;
+			Si contrasena == "A123" Entonces
+				Login = Verdadero;
+			SiNo 
+				Escribir "Su contraseña es incorrecta, tienes ", 3 - intentos, " restantes";
+			FinSi
+		FinMientras
+	FinSi
+	
+	Si Login == Verdadero Entonces
+		Hacer
+			Escribir "Menu de opciones";
+			Escribir "1- Ingresar botellas";
+			Escribir "2- Consultar saldo";
+			Escribir "3- Salir";
+			Leer respuesta;
+			Si respuesta == 1 Entonces
+				Escribir "Ingrese el total de botellas a entregar";
+				Leer botellas;
+				Para i = 1 Hasta botellas Hacer
+					gramos = Aleatorio(100, 3000);
+					Escribir i "=" gramos;
+					Si gramos <= 500 Entonces
+						total = total + 50;
+					FinSi
+					Si gramos > 500 Y gramos <= 1500 Entonces
+						total = total + 125;
+					FinSi
+					Si gramos > 1500 Entonces
+						total = total + 200;
+					FinSi
+				FinPara
+				Escribir "El total es: ",total;
+				Escribir "Acepta que ese monto se acredite a su saldo? (s/n)";
+				Leer eleccion;
+				Si Minusculas(eleccion) == "s" Entonces
+					saldo = saldo + total;
+				SiNo 
+					Escribir "Devolviendo material";
+				FinSi
+			FinSi
+			Si respuesta == 2 Entonces
+				Escribir "Su saldo es: ", saldo;
+			FinSi
+		Mientras Que respuesta <> 3
+	FinSi
+FinAlgoritmo
